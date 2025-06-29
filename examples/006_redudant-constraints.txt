@@ -1,0 +1,16 @@
+# A problem with redundant constraints.
+# Maximize P = x_1
+# Subject to:
+#   x_1 <= 5
+#   x_1 <= 10 (redundant)
+#
+# Optimal solution is P = 5 at x_1 = 5.
+
+NUM_VARS: 1
+
+OBJECTIVE:
+1x_1
+
+CONSTRAINTS:
+1x_1 <= 5
+1x_1 <= 10

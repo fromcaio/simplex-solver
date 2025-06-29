@@ -1,0 +1,14 @@
+# An unbounded problem (no constraint on x_2).
+# Maximize P = x_1 + 2x_2
+# Subject to:
+#   x_1 <= 5
+#
+# x_2 can grow infinitely. Should raise: Problem is unbounded.
+
+NUM_VARS: 2
+
+OBJECTIVE:
+1x_1 + 2x_2
+
+CONSTRAINTS:
+1x_1 <= 5

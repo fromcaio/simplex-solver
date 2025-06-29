@@ -1,0 +1,18 @@
+# A Linear Programming Problem that requires Phase I (dual-phase Simplex).
+# Maximize P = 2x_1 + 3x_2
+# Subject to:
+#   x_1 +  x_2 >= 4        → requires artificial variable
+#   2x_1 + 5x_2 <= 15      → slack variable only
+#   4x_1 + 3x_2 = 18       → requires artificial variable
+#
+# This LP needs dual-phase Simplex because of the >= and = constraints.
+
+NUM_VARS: 2
+
+OBJECTIVE:
+2x_1 + 3x_2
+
+CONSTRAINTS:
+1x_1 + 1x_2 >= 4
+2x_1 + 5x_2 <= 15
+4x_1 + 3x_2 = 18

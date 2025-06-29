@@ -1,0 +1,18 @@
+# A problem that requires Phase I due to >= and = constraints.
+# Maximize P = 2x_1 + 3x_2
+# Subject to:
+#   x_1 + x_2 >= 4
+#   2x_1 + 5x_2 <= 15
+#   4x_1 + 3x_2 = 18
+#
+# Optimal at (x_1 ≈ 3.2143, x_2 ≈ 1.7143), P ≈ 11.5714.
+
+NUM_VARS: 2
+
+OBJECTIVE:
+2x_1 + 3x_2
+
+CONSTRAINTS:
+1x_1 + 1x_2 >= 4
+2x_1 + 5x_2 <= 15
+4x_1 + 3x_2 = 18

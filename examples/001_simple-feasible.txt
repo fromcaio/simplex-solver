@@ -1,0 +1,18 @@
+# A simple linear programming problem for testing.
+# Maximize P = 3x_1 + 5x_2
+# Subject to:
+#   1x_1 <= 4
+#   2x_2 <= 12
+#   3x_1 + 2x_2 <= 18
+#
+# The optimal solution is P = 36 at (x_1=2, x_2=6).
+
+NUM_VARS: 2
+
+OBJECTIVE:
+3x_1 + 5x_2
+
+CONSTRAINTS:
+1x_1 <= 4
+2x_2 <= 12
+3x_1 + 2x_2 <= 18

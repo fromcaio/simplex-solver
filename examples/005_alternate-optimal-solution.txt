@@ -1,0 +1,18 @@
+# A problem with multiple optimal solutions.
+# Maximize P = x_1 + x_2
+# Subject to:
+#   x_1 + x_2 <= 10
+#   x_1 <= 7
+#   x_2 <= 7
+#
+# Any point on x_1 + x_2 = 10 gives optimal P = 10.
+
+NUM_VARS: 2
+
+OBJECTIVE:
+1x_1 + 1x_2
+
+CONSTRAINTS:
+1x_1 + 1x_2 <= 10
+1x_1 <= 7
+1x_2 <= 7

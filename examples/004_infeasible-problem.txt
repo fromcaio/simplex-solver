@@ -1,0 +1,16 @@
+# A problem with conflicting constraints.
+# Maximize P = x_1 + x_2
+# Subject to:
+#   x_1 + x_2 <= 3
+#   x_1 + x_2 >= 5
+#
+# No feasible region. Should raise: Problem is infeasible.
+
+NUM_VARS: 2
+
+OBJECTIVE:
+1x_1 + 1x_2
+
+CONSTRAINTS:
+1x_1 + 1x_2 <= 3
+1x_1 + 1x_2 >= 5
