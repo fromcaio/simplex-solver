@@ -45,4 +45,4 @@ if __name__ == "__main__":
     else:
         print("Usage: python main.py <path_to_lpp_file>")
         # As a fallback, run a default example
-        run_solver('examples/example_lpp_1.txt')
+        run_solver('examples/001_simple-feasible.txt')
