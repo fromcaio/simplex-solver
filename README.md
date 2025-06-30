@@ -141,6 +141,6 @@ Non-Basic Variables: ['s_1']
 
 ## Limitações
 
-- Critério de Desempate: A implementação atual não utiliza regras sofisticadas de desempate (como a Regra de Bland) para escolher variáveis de entrada/saída. Utiliza o comportamento padrão do argmin do NumPy, o que pode permitir ciclos em casos patológicos.
-- Erros de Formato: O tratamento de erros para arquivos de entrada malformados é básico. Um formato muito incorreto pode gerar erros inesperados.
-- Restrição Redundante com Artificial Inamovível: Em casos raros, uma restrição redundante pode fazer com que uma variável artificial permaneça na base ao fim da Fase I sem possibilidade de pivô para removê-la. Nestes casos, o programa lança um NotImplementedError.
+- Critério de Desempate: A implementação atual não utiliza regras sofisticadas de desempate (como a Regra de Bland) para escolher variáveis de entrada/saída. Utiliza o comportamento padrão do argmin do NumPy, o que pode permitir ciclos em casos patológicos (raros e especificos).
+- Validação de Entrada Limitada: O tratamento de erros para arquivos malformados ainda é básico. Arquivos com estrutura incorreta podem gerar erros inesperados.
+- Detectabilidade de Redundância: Embora o solver consiga lidar com restrições redundantes, ele não realiza uma análise explícita de redundância, o que pode afetar o desempenho ou gerar tabelaus maiores do que o necessário.
