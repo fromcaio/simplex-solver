@@ -1,108 +1,110 @@
 # Simplex Solver
-## Visão Geral
-Este projeto é uma implementação computacional do método Simplex para resolver Problemas de Programação Linear (PPLs), desenvolvido como parte prática de uma disciplina de Pesquisa Operacional. O solver foi escrito em Python e construído do zero, sem dependência de bibliotecas externas de otimização matemática (como o linprog do SciPy).
 
-A implementação utiliza o Método Simplex em Duas Fases, o que permite resolver problemas de maximização com uma combinação de restrições do tipo menor ou igual (<=), maior ou igual (>=) e igual (=). O código é modular e de fácil manutenção, com separação clara entre o parser de entrada, a padronização e a lógica principal do solver.
+## Overview
+This project is a computational implementation of the Simplex Method for solving Linear Programming Problems (LPPs), developed as a practical component of an Operations Research course. The solver is written in Python and built from scratch, with no reliance on external mathematical optimization libraries (such as SciPy's `linprog`).
 
-## Funcionalidades
-- Resolve Problemas de Maximização: O algoritmo principal é voltado para problemas padrão de maximização.
-- Suporte a Todos os Tipos de Restrição: Lida corretamente com restrições ≤, ≥ e = adicionando variáveis de folga, excesso e artificiais, conforme necessário.
-- Método Simplex em Duas Fases: Detecta automaticamente quando uma base viável inicial não é evidente e executa a Fase I antes de prosseguir para a Fase II.
-- Tratamento de Degenerescência: Inclui lógica para lidar com casos degenerados, nos quais uma variável artificial permanece na base com valor zero ao final da Fase I.
-- Entrada via Arquivo: Os modelos de PPL são definidos em arquivos de texto simples e legíveis.
-- Saída Detalhada: A solução final exibe um resumo completo com status, valor ótimo da função objetivo e os valores de todas as variáveis (decisão, folga, excesso e artificiais).
+It uses the **Two-Phase Simplex Method**, allowing it to solve maximization problems with a combination of constraints of type less than or equal to (≤), greater than or equal to (≥), and equal to (=). The codebase is modular and easy to maintain, with a clear separation between input parsing, standardization, and the core solver logic.
 
-## Estrutura do Projeto
-O projeto é organizado de forma modular, visando clareza de código e separação de responsabilidades.
+## Features
+
+- **Solves Maximization Problems**: The core algorithm is designed for standard maximization problems.
+- **Supports All Constraint Types**: Handles ≤, ≥, and = constraints by adding slack, surplus, and artificial variables as needed.
+- **Two-Phase Simplex Method**: Automatically detects when an initial feasible basis is not obvious and runs Phase I before proceeding to Phase II.
+- **Degeneracy Handling**: Includes logic to handle degenerate cases where an artificial variable remains in the basis with zero value after Phase I.
+- **File-Based Input**: LPP models are defined in simple, human-readable text files.
+- **Detailed Output**: The final solution displays a full summary including status, optimal objective function value, and values of all variables (decision, slack, surplus, and artificial).
+
+## Project Structure
+
+The project is organized in a modular way to ensure code clarity and separation of concerns.
 
 ```
 simplex_project/
 │
-├── main.py                 # Ponto de entrada principal do solver.
+├── main.py # Main entry point of the solver.
 │
 ├── core/
-│   ├── __init__.py
-│   ├── model_parser.py     # Faz o parser do arquivo de entrada.
-│   ├── standardizer.py     # Converte o modelo para a forma padrão (normalização).
-│   ├── tableau.py          # Classe que representa e opera sobre o tableau Simplex.
-│   ├── pivoting.py         # Lógica de escolha das variáveis de entrada e saída.
-│   └── solver.py           # Núcleo do algoritmo de resolução (método em duas fases).
+│ ├── init.py
+│ ├── model_parser.py # Parses the input file.
+│ ├── standardizer.py # Converts the model to standard form.
+│ ├── tableau.py # Class for representing and manipulating the Simplex tableau.
+│ ├── pivoting.py # Logic for selecting entering and leaving variables.
+│ └── solver.py # Core of the solving algorithm (two-phase method).
 │
 ├── examples/
-│   ├── 001_simple-feasible.txt   # PPL simples que não requer Fase I.
-│   └── 002_dual_phase.txt   # PPL mais complexo que requer o método em duas fases.
-│   └── ...   # Outros PPL utilizados para testes
+│ ├── 001_simple-feasible.txt # Simple LPP that does not require Phase I.
+│ └── 002_dual_phase.txt # More complex LPP requiring the two-phase method.
+│ └── ... # Other test LPPs
 │
-└── README.md               # Este arquivo de documentação.
+└── README.md # This documentation file.
 ```
 
-## Requisitos
-- Python 3.8 ou superior
-- Biblioteca NumPy
+## Requirements
 
-## Instalação
-1. Clone o repositório:
+- Python 3.8 or higher
+- NumPy library
+
+## Installation
+
+1. Clone the repository:
 
 ```bash
-git clone <url-do-seu-repositório>
+git clone <your-repository-url>
 cd simplex_project
 ```
+2. Create and activate a virtual environment (recommended):
 
-2. Crie e ative um ambiente virtual (recomendado):
-
-- No macOS/Linux:
+- On macOS/Linux:
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
+- On Windows:
 
-- No Windows:
-
-```powershell
+```bash
 python -m venv venv
 .\venv\Scripts\activate
 ```
 
-3. Instale as dependências:
-
+3. Install dependencies:
 ```bash
 pip install numpy
 ```
 
-## Uso
-O solver é executado via linha de comando, passando o caminho para o arquivo de entrada contendo o modelo de PPL.
+## Usage
+Run the solver from the command line, passing the path to the input file containing the LPP model.
 
-- Comando
+- Command
 
 ```bash
-python main.py path/to/seu_arquivo_lpp.txt
+python main.py path/to/your_lpp_file.txt
 ```
 
-## Formato do Arquivo de Entrada
-O arquivo de entrada deve seguir um formato simples baseado em palavras-chave. Linhas em branco e comentários (iniciadas com #) são ignoradas.
+## Input File Format
+The input file must follow a simple, keyword-based format. Blank lines and comments (lines starting with #) are ignored.
 
-As seções obrigatórias são:
+Required sections:
 
-- NUM_VARS: Número de variáveis de decisão (ex: x_1, x_2, ...).
-- OBJECTIVE: Expressão da função objetivo, que será sempre de maximização.
-- CONSTRAINTS: Lista de restrições, uma por linha.
+- NUM_VARS: Number of decision variables (e.g., x_1, x_2, ...).
+- OBJECTIVE: The objective function expression, which is always a maximization.
+- CONSTRAINTS: List of constraints, one per line.
 
-#### Notação das Variáveis e Coeficientes
-As variáveis devem ser escritas no formato x_1, x_2, etc.
-Cada termo deve seguir a forma <coeficiente>x_<índice>, como 3x_2, 1x_1, etc.
+#### Variable and Coefficient Notation
+Variables should be written as x_1, x_2, etc.
+Each term should follow the format <coefficient>x_<index>, such as 3x_2, 1x_1, etc.
 
-- O coeficiente deve ser escrito antes da variável quando for diferente de 1. Exemplo correto: 4x_1 + 2x_2 <= 10
-- Se o coeficiente for 1, ele pode ser omitido ou incluído:
-    - Válido: x_1 + x_2 <= 10
-    - Também válido: 1x_1 + 1x_2 <= 10
+- The coefficient should precede the variable when it is different from 1. Example: 4x_1 + 2x_2 <= 10
+- If the coefficient is 1, it may be omitted or included:
+    - Valid: x_1 + x_2 <= 10
+    - Also valid: 1x_1 + 1x_2 <= 10
 
-#### Exemplo Completo:
+#### Full Example:
 
 ```makefile
-# Problema de Programação Linear
+# Linear Programming Problem
 # Maximize P = 2x_1 + 3x_2
-# Sujeito a:
+# Subject to:
 #   x_1 + x_2 >= 4
 #   2x_1 + 5x_2 <= 15
 #   4x_1 + 3x_2 = 18
@@ -118,7 +120,7 @@ CONSTRAINTS:
 4x_1 + 3x_2 = 18
 ```
 
-## Saída Esperada
+## Expected Output
 
 ```
 --- Solving LPP from file: examples/example_lpp_2.txt ---
@@ -139,8 +141,16 @@ Basic Variables: ['e_1', 'x_1', 'x_2']
 Non-Basic Variables: ['s_1']
 ```
 
-## Limitações
+## Limitations
 
-- Critério de Desempate: A implementação atual não utiliza regras sofisticadas de desempate (como a Regra de Bland) para escolher variáveis de entrada/saída. Utiliza o comportamento padrão do argmin do NumPy, o que pode permitir ciclos em casos patológicos (raros e especificos).
-- Validação de Entrada Limitada: O tratamento de erros para arquivos malformados ainda é básico. Arquivos com estrutura incorreta podem gerar erros inesperados.
-- Detectabilidade de Redundância: Embora o solver consiga lidar com restrições redundantes, ele não realiza uma análise explícita de redundância, o que pode afetar o desempenho ou gerar tabelaus maiores do que o necessário.
+- Tie-Breaking Criteria: The current implementation does not use advanced tie-breaking rules (like Bland’s Rule) when selecting entering/leaving variables. It uses NumPy’s default argmin behavior, which may allow cycling in rare pathological cases.
+- Limited Input Validation: Error handling for malformed input files is still basic. Incorrectly structured files may cause unexpected errors.
+- Redundancy Detection: While the solver can handle redundant constraints, it does not explicitly detect or eliminate them, which may affect performance or lead to unnecessarily large tableaus.
+
+
+## 📜 License
+This project is released under an academic-use license. Redistribution or commercial use is not permitted without explicit permission.
+
+### 👥 Author
+
+- [@fromcaio](https://github.com/fromcaio) 
